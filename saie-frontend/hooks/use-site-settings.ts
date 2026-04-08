@@ -8,7 +8,7 @@ export interface SiteSettings {
   bio_ar: string;
 }
 
-const CACHE_KEY = "site_settings_cache";
+const CACHE_KEY = "site_settings_v2";
 
 const fetchSiteSettings = async (): Promise<SiteSettings> => {
   const { data } = await api.get<SiteSettings>("/site-settings/");
@@ -30,7 +30,7 @@ export const useSiteSettings = () => {
   return useQuery<SiteSettings, Error>({
     queryKey: ["siteSettings"],
     queryFn: fetchSiteSettings,
-    initialData: getCachedSettings,
+    placeholderData: getCachedSettings(),
     staleTime: 5 * 60_000,
     refetchOnWindowFocus: false,
     retry: 1,
