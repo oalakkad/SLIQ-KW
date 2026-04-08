@@ -1,0 +1,13 @@
+saie-backend.env
+saie-frontend.env
+saie-backend/.env
+saie-frontend/.env
+saie-frontend/.env.local
+saie-frontend/.env.production
+**/.env
+**/.env.local
+**/.env.production
+**/node_modules
+**/__pycache__
+**/*.pyc
+saie-frontend/.next

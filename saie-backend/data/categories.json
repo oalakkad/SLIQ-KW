@@ -1,0 +1,52 @@
+{
+    "authorization": 0,
+    "availability": "1",
+    "status": true,
+    "data": [
+        {
+            "category_id": "2",
+            "category_name": "Hair Clips",
+            "category_name_ar": "شباصات",
+            "image": "https://ksacdn4.mnasaticdn.com/uploads/product_image/3425/default_3425_1719748415.jpg",
+            "product_total": "28",
+            "sort": "0",
+            "thumb_image": "https://ksacdn4.mnasaticdn.com/uploads/product_image/3425/default_3425_1719748415.jpg"
+        },
+        {
+            "category_id": "4",
+            "category_name": "DIY Set",
+            "category_name_ar": "DIY Set",
+            "image": "https://ksacdn4.mnasaticdn.com/uploads/category_image/3425/category_4_1722279181_thumb.jpg",
+            "product_total": "1",
+            "sort": "0",
+            "thumb_image": "https://ksacdn4.mnasaticdn.com/uploads/category_image/3425/category_4_1722279181_thumb.jpg"
+        },
+        {
+            "category_id": "7",
+            "category_name": "Hair Brushes",
+            "category_name_ar": "فرش الشعر",
+            "image": "https://ksacdn4.mnasaticdn.com/uploads/product_image/3425/default_3425_1719748415.jpg",
+            "product_total": "3",
+            "sort": "0",
+            "thumb_image": "https://ksacdn4.mnasaticdn.com/uploads/product_image/3425/default_3425_1719748415.jpg"
+        },
+        {
+            "category_id": "11",
+            "category_name": "Makeup Pouches",
+            "category_name_ar": "Makeup Pouches",
+            "image": "https://ksacdn4.mnasaticdn.com/uploads/product_image/3425/default_3425_1719748415.jpg",
+            "product_total": "1",
+            "sort": "0",
+            "thumb_image": "https://ksacdn4.mnasaticdn.com/uploads/product_image/3425/default_3425_1719748415.jpg"
+        },
+        {
+            "category_id": "14",
+            "category_name": "Pre-made clips",
+            "category_name_ar": "Pre-Made clips",
+            "image": "https://ksacdn4.mnasaticdn.com/uploads/product_image/3425/default_3425_1719748415.jpg",
+            "product_total": "3",
+            "sort": "0",
+            "thumb_image": "https://ksacdn4.mnasaticdn.com/uploads/product_image/3425/default_3425_1719748415.jpg"
+        }
+    ]
+}
