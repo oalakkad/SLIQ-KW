@@ -51,7 +51,7 @@ SECRET_KEY = getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 DEBUG = getenv("DEBUG", "False") == "True"
 ALLOWED_HOSTS = getenv(
     "DJANGO_ALLOWED_HOSTS",
-    "127.0.0.1,localhost,ecommerce-backend-dvho.onrender.com,api.saie-clips.com"
+    "127.0.0.1,localhost,ecommerce-backend-dvho.onrender.com,api.saie-clips.com,api.sliq.hair,sliq.hair,www.sliq.hair,sliqhair.com,www.sliqhair.com"
 ).split(",")
 
 # Installed apps
@@ -268,7 +268,7 @@ FILE_UPLOAD_HANDLERS = ["django.core.files.uploadhandler.TemporaryFileUploadHand
 # =========================
 CORS_ALLOWED_ORIGINS = getenv(
     "CORS_ALLOWED_ORIGINS",
-    "http://localhost:3000,http://127.0.0.1:3000,https://saie.vercel.app,https://saie-clips.com"
+    "http://localhost:3000,http://127.0.0.1:3000,https://saie.vercel.app,https://saie-clips.com,https://sliq.hair,https://www.sliq.hair,https://sliqhair.com,https://www.sliqhair.com"
 ).split(",")
 CORS_ALLOW_CREDENTIALS = True
 
