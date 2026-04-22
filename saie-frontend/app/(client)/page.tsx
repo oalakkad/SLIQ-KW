@@ -24,19 +24,14 @@ import type { ThreeImagesProps } from "@/components/common/ThreeImages";
 import type { CategoryCardProps } from "@/components/common/CategoryCard";
 import { useAppSelector } from "@/redux/hooks";
 import { useSiteSettings } from "@/hooks/use-site-settings";
+import { useHomeImages } from "@/hooks/use-home-images";
 
 const API_URL = process.env.NEXT_PUBLIC_AWS_URL || "http://localhost:8000";
 
-const generateImageSet = (start: number): ThreeImagesProps[] =>
-  [0, 1, 2].map((i) => ({
-    src: `${API_URL}/media/home/${start + i}.webp`,
-    alt: `Image ${i + 1}`,
-  }));
-
-const imageGroups = [
-  generateImageSet(1),
-  generateImageSet(4),
-  generateImageSet(7),
+const staticImageGroups = [
+  [1, 2, 3].map((i) => ({ src: `${API_URL}/media/home/${i}.webp`, alt: `Image ${i}` })),
+  [4, 5, 6].map((i) => ({ src: `${API_URL}/media/home/${i}.webp`, alt: `Image ${i}` })),
+  [7, 8, 9].map((i) => ({ src: `${API_URL}/media/home/${i}.webp`, alt: `Image ${i}` })),
 ];
 
 export default function Page() {
@@ -45,6 +40,16 @@ export default function Page() {
   const [loading, setLoading] = useState(true);
   const isArabic = useAppSelector((state) => state.lang.isArabic);
   const { data: siteSettings } = useSiteSettings();
+  const { data: homeImages } = useHomeImages();
+
+  const getHomeImg = (key: string, fallback: string) =>
+    homeImages?.find((img) => img.key === key)?.image || fallback;
+
+  const imageGroups: ThreeImagesProps[][] = [
+    [1, 2, 3].map((i) => ({ src: getHomeImg(`home-${i}`, `${API_URL}/media/home/${i}.webp`), alt: `Image ${i}` })),
+    [4, 5, 6].map((i) => ({ src: getHomeImg(`home-${i}`, `${API_URL}/media/home/${i}.webp`), alt: `Image ${i}` })),
+    [7, 8, 9].map((i) => ({ src: getHomeImg(`home-${i}`, `${API_URL}/media/home/${i}.webp`), alt: `Image ${i}` })),
+  ];
   const direction = isArabic ? "rtl" : "ltr";
   const textAlign = isArabic ? "right" : "left";
   const marginX = isArabic ? { ml: 0, mr: 6 } : { ml: 6, mr: 0 };
@@ -52,22 +57,22 @@ export default function Page() {
   const categories: CategoryCardProps[] = [
     {
       title: isArabic ? "مشابك الشعر" : "HAIR CLIPS",
-      imageUrl: `${API_URL}/media/home/hair-clips.jpg`,
+      imageUrl: getHomeImg("category-hair-clips", `${API_URL}/media/home/hair-clips.jpg`),
       href: "/category/hair-clips",
     },
     {
       title: isArabic ? "فرش الشعر" : "HAIR BRUSHES",
-      imageUrl: `${API_URL}/media/home/hair-brushes.jpg`,
+      imageUrl: getHomeImg("category-hair-brushes", `${API_URL}/media/home/hair-brushes.jpg`),
       href: "/category/hair-brushes",
     },
     {
       title: isArabic ? "مشابك جاهزة" : "PRE-MADE CLIPS",
-      imageUrl: `${API_URL}/media/home/premade-clips.png`,
+      imageUrl: getHomeImg("category-premade-clips", `${API_URL}/media/home/premade-clips.png`),
       href: "/category/pre-made-clips",
     },
     {
       title: isArabic ? "حقائب المكياج" : "MAKEUP BAGS",
-      imageUrl: `${API_URL}/media/home/makeup-bags.png`,
+      imageUrl: getHomeImg("category-makeup-bags", `${API_URL}/media/home/makeup-bags.png`),
       href: "/category/makeup-pouches",
     },
   ];
@@ -278,7 +283,7 @@ export default function Page() {
         description={t.inspiredDesc}
         buttonText={t.shopNow}
         buttonLink="/shop"
-        imageSrc={`${API_URL}/media/home/banner.svg`}
+        imageSrc={getHomeImg("banner", `${API_URL}/media/home/banner.svg`)}
       />
 
       <AboutSection
@@ -286,7 +291,7 @@ export default function Page() {
         description={t.aboutDesc}
         buttonText={t.ourStory}
         buttonLink="/lookbook"
-        imageSrc={`${API_URL}/media/home/banner2.svg`}
+        imageSrc={getHomeImg("banner2", `${API_URL}/media/home/banner2.svg`)}
       />
     </Box>
   );

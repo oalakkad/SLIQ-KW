@@ -7,6 +7,8 @@ class SiteSettings(models.Model):
     logo = models.ImageField(upload_to='site/', blank=True, null=True)
     bio_en = models.TextField(blank=True, default="A brand founded on bold femininity, offering effective and effortless products.")
     bio_ar = models.TextField(blank=True, default="علامة تجارية نسائية جريئة تدعمها منتجات عالية الجودة وفعالة وسهلة الاستخدام.")
+    brand_name = models.CharField(max_length=100, blank=True, default="SLIQ")
+    instagram_url = models.URLField(blank=True, default="https://www.instagram.com/sliq.hair/")
 
     class Meta:
         verbose_name = "Site Settings"
@@ -16,6 +18,14 @@ class SiteSettings(models.Model):
     def get_solo(cls):
         obj, _ = cls.objects.get_or_create(pk=1)
         return obj
+
+class HomeImage(models.Model):
+    key = models.CharField(max_length=100, unique=True)
+    label = models.CharField(max_length=255, blank=True)
+    image = models.ImageField(upload_to='home/', blank=True, null=True)
+
+    def __str__(self):
+        return self.label or self.key
 
 class AdminActivityLog(models.Model):
     admin = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

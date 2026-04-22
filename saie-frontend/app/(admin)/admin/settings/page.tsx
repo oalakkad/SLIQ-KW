@@ -25,6 +25,8 @@ export default function SettingsPage() {
 
   const [bioEn, setBioEn] = useState("");
   const [bioAr, setBioAr] = useState("");
+  const [brandName, setBrandName] = useState("");
+  const [instagramUrl, setInstagramUrl] = useState("");
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
   const [logoFile, setLogoFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -33,6 +35,8 @@ export default function SettingsPage() {
     if (settings) {
       setBioEn(settings.bio_en);
       setBioAr(settings.bio_ar);
+      setBrandName(settings.brand_name || "SLIQ");
+      setInstagramUrl(settings.instagram_url || "");
       setLogoPreview(settings.logo || null);
     }
   }, [settings]);
@@ -48,6 +52,8 @@ export default function SettingsPage() {
     const formData = new FormData();
     formData.append("bio_en", bioEn);
     formData.append("bio_ar", bioAr);
+    formData.append("brand_name", brandName);
+    formData.append("instagram_url", instagramUrl);
     if (logoFile) {
       formData.append("logo", logoFile);
     }
@@ -110,6 +116,28 @@ export default function SettingsPage() {
               <Text fontSize="sm" color="gray.500">{logoFile.name}</Text>
             )}
           </HStack>
+        </FormControl>
+
+        {/* Brand Name */}
+        <FormControl>
+          <FormLabel fontWeight="semibold">Brand Name (Footer)</FormLabel>
+          <Input
+            value={brandName}
+            onChange={(e) => setBrandName(e.target.value)}
+            placeholder="e.g. SLIQ"
+            fontFamily="Montserrat, sans-serif"
+          />
+        </FormControl>
+
+        {/* Instagram URL */}
+        <FormControl>
+          <FormLabel fontWeight="semibold">Instagram URL</FormLabel>
+          <Input
+            value={instagramUrl}
+            onChange={(e) => setInstagramUrl(e.target.value)}
+            placeholder="https://www.instagram.com/yourhandle/"
+            fontFamily="Montserrat, sans-serif"
+          />
         </FormControl>
 
         {/* Bio EN */}

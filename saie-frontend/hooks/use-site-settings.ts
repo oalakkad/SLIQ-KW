@@ -6,6 +6,8 @@ export interface SiteSettings {
   logo: string | null;
   bio_en: string;
   bio_ar: string;
+  brand_name: string;
+  instagram_url: string;
 }
 
 const CACHE_KEY = "site_settings_v2";

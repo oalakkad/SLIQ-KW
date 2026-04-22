@@ -2,8 +2,9 @@ from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from django.core.mail import send_mail
 from django.conf import settings
-from .serializers import ContactMessageSerializer, SiteSettingsSerializer
-from .models import SiteSettings
+from .serializers import ContactMessageSerializer, SiteSettingsSerializer, HomeImageSerializer
+from .models import SiteSettings, HomeImage
+from rest_framework.parsers import MultiPartParser, FormParser
 from django.contrib.auth import get_user_model
 from django.db.models import Sum, Value, DecimalField
 from rest_framework.views import APIView
@@ -92,6 +93,18 @@ class SiteSettingsView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
+
+class HomeImagesListView(generics.ListAPIView):
+    queryset = HomeImage.objects.all().order_by('key')
+    serializer_class = HomeImageSerializer
+    permission_classes = [permissions.AllowAny]
+
+class HomeImageUpdateView(generics.UpdateAPIView):
+    queryset = HomeImage.objects.all()
+    serializer_class = HomeImageSerializer
+    permission_classes = [IsAdminUser]
+    parser_classes = [MultiPartParser, FormParser]
+    lookup_field = 'key'
 
 @csrf_exempt
 def proxy_instagram_image(request):
