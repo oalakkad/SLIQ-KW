@@ -9,8 +9,8 @@ export interface HomeImage {
 }
 
 const fetchHomeImages = async (): Promise<HomeImage[]> => {
-  const { data } = await api.get<HomeImage[]>("/home-images/");
-  return data;
+  const { data } = await api.get<HomeImage[] | { results: HomeImage[] }>("/home-images/");
+  return Array.isArray(data) ? data : data.results;
 };
 
 export const useHomeImages = () => {
